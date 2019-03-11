@@ -13,18 +13,22 @@
 @import 'symbolfunctions.js';
 
 var onRun = function(context) {
-  let thisPage = context.document.currentPage();
-  updateArtboards(thisPage);
+  let doc = context.document;
+  let thisPage = doc.currentPage();
+  updateArtboards(doc, thisPage);
 }
 
-function updateArtboards(page) {
+function updateArtboards(doc, page) {
   const currentDateOverrideName = '<currentDate>';
   let artboards = [page artboards];
   let artboardCount = artboards.count();
   let datesAdded = 0;
   for (let i = 0; i < artboardCount; i++) {
     let artboard = artboards[i];
-    doc.showMessage(`Updating artboard ${i + 1}. ${((i + 1)/artboardCount).toFixed(0)}% complete.`);
+    setTimeout(() => {
+      doc.showMessage(`Updating artboard ${i + 1}. ${((i + 1)/artboardCount * 100).toFixed(0)}% complete.`);
+    }, 0);
+
     layers = artboard.children();
     for (let j = 0; j < layers.count(); j++) {
       let layer = layers[j];
@@ -37,7 +41,9 @@ function updateArtboards(page) {
   }
   // summary
   const br = String.fromCharCode(13);
-  alert('Date updates complete.', `${br}Date instances updated: ${datesAdded}${br}`);
+  setTimeout(() => {
+    alert('Date updates complete.', `${br}Date instances updated: ${datesAdded}${br}`)
+  }, 50);
 }
 
 function setCurrentDate(instance, overrideName) {
