@@ -2,7 +2,7 @@
 
 A Sketch plugin that adds the current date to artboards on the current Sketch page using a symbol instance to display the page number. 
 
-To see how it works, try the sample.sketch repository
+To see how it works, try the sample.sketch file in the repository
 
 To get a date, an artboard needs to include a symbol instance with a text override named `"<currentDate>"`. The name of the symbol instance itself does not matter. Note that this override cannot be in a nested symbol.
 
