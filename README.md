@@ -19,7 +19,7 @@ Here are the supported formats:
 * [MM]  – 01
 * [M] – 1
 
-Note that the short [MMM] dates follow styleguide recommendations, where March, April, June, and July are not abbrevieated, and September is abbreviated as Sept.
+Note that the short [MMM] dates follow styleguide recommendations, where March, April, May, June, and July are not abbrevieated, and September is abbreviated as Sept.
 
 ### Date formats, assiming it's the 3rd of the month:
 * [DDD] – 3rd
