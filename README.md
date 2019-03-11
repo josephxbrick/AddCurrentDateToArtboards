@@ -1,6 +1,6 @@
 # AddCurrentDateToArtboards
 
-A Sketch plugin that adds today's date to artboards on the current Sketch page, using a symbol instance to display the page number. 
+A Sketch plugin that places today's date to artboards on the current Sketch page, using a symbol instance to display the page number. 
 
 To see how it works, try the sample.sketch file in the repository.
 
