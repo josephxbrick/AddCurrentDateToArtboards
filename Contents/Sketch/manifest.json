@@ -1,0 +1,19 @@
+{
+  "commands" : [
+    {
+      "script" : "main.js",
+      "name" : "Add current date to artboards",
+      "handlers" : "onRun",
+      "identifier" : "addcurrentdate"
+    }
+  ],
+  "menu" : {
+    "isRoot": true,
+    "items" : [
+      "addcurrentdate"
+    ],
+    "title" : "Add current date to artboards"
+  },
+  "description" : "Add the current date to symbol instances on artboards in a variety of formats",
+  "name" : "Add current date to artboards"
+}
