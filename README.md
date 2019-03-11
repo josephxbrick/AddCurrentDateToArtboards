@@ -9,7 +9,7 @@ To get a date, an artboard needs to include a symbol instance with a text overri
 ## Date template
 If you don't provide a date template, the date format will default to MM/DD/YYYY. You can specify other date formats by placing various date templates in the default text of the text override. Your symbol should look like this with a template:
 
-<img src="/readme_images/Screen Shot 2019-03-10 at 3.08.46 PM.png" width="550">
+<img src="/readme_images/sample.png" width="550">
 
 Here are the supported formats:
 
