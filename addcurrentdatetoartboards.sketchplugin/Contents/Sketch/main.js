@@ -18,12 +18,13 @@ var onRun = function(context) {
 }
 
 function updateArtboards(page) {
-  const startPageNum = 1;
   const currentDateOverrideName = '<currentDate>';
   let artboards = [page artboards];
+  let artboardCount = artboards.count();
   let datesAdded = 0;
-  for (let i = 0; i < artboards.count(); i++) {
+  for (let i = 0; i < artboardCount; i++) {
     let artboard = artboards[i];
+    doc.showMessage(`Updating artboard ${i + 1}. ${((i + 1)/artboardCount).toFixed(0)}% complete.`);
     layers = artboard.children();
     for (let j = 0; j < layers.count(); j++) {
       let layer = layers[j];
