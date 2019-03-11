@@ -7,9 +7,11 @@ To see how it works, try the sample.sketch file in the repository.
 To get a date, an artboard needs to include a symbol instance with a text override named `"<currentDate>"`. The name of the symbol instance itself does not matter. Note that this override cannot be in a nested symbol.
 
 ## Date template
-If you don't provide a date template, the date format will default to MM/DD/YYYY. You can specify other date formats by placing the following date templates in the default text of the text override. So your symbol on the symbol page would look like this:
+If you don't provide a date template, the date format will default to MM/DD/YYYY. You can specify other date formats by placing various date templates in the default text of the text override. For example, your symbol should look like this with a template:
 
 <img src="/readme_images/Screen Shot 2019-03-10 at 3.08.46 PM.png" width="550">
+
+Here are the supported formats:
 
 ### Month formats, assuming it's January:
 * [MMMM] – January
