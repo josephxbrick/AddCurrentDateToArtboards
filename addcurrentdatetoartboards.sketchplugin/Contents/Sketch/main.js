@@ -1,49 +1,35 @@
-/*
- This plug-in assigns the current date to artboards on the current Sketch page.
-
- To get a date, an artboard needs to include a symbol instance with a text override named '<currentDate>'.
- The name of the symbol instance doesn't matter.
-
- You can format the date many ways by including a template in the default override text.
- For example [MMM] [DDD], [YYYY] would give you January 3rd, 2019. See code below for template types.
- If there's no template specified, you'll get 1/03/2019.
-*/
-
 @import 'common.js';
 @import 'symbolfunctions.js';
+@import 'artboardfunctions.js';
+const {toArray} = require('util');
 
-var onRun = function(context) {
-  let doc = context.document;
-  let thisPage = doc.currentPage();
-  updateArtboards(doc, thisPage);
+// called from plug-in menu
+var _addCurrentDate = function(context) {
+  const doc = context.document;
+  let summary = [];
+  if (checkDateSetup(doc, summary) !== undefined) {
+    addCurrentDate(context, summary);
+  }
+  displaySummary(doc, summary);
 }
 
-function updateArtboards(doc, page) {
-  const currentDateOverrideName = '<currentDate>';
-  let artboards = [page artboards];
-  let artboardCount = artboards.count();
-  let datesAdded = 0;
-  for (let i = 0; i < artboardCount; i++) {
-    let artboard = artboards[i];
-    setTimeout(() => {
-      doc.showMessage(`Updating artboard ${i + 1}. ${((i + 1)/artboardCount * 100).toFixed(0)}% complete.`);
-    }, 0);
+//======================================================
 
-    layers = artboard.children();
-    for (let j = 0; j < layers.count(); j++) {
-      let layer = layers[j];
-      if (layer.class() === MSSymbolInstance) {
-        if (setCurrentDate(layer, currentDateOverrideName) !== undefined) {
-          datesAdded++;
-        }
+function addCurrentDate(context, summary) {
+  const doc = context.document;
+  const page = doc.currentPage();
+  let artboards = toArray(page.layers()).filter(item => item.class() === MSArtboardGroup);
+  let datesAdded = 0;
+  for (const artboard of artboards) {
+    instances = toArray(artboard.children()).filter(item => item.class() === MSSymbolInstance);
+    for (const instance of instances) {
+      if (setCurrentDate(instance, '<currentDate>') !== undefined) {
+        datesAdded++;
       }
     }
   }
   // summary
-  const br = String.fromCharCode(13);
-  setTimeout(() => {
-    alert('Date updates complete.', `${br}Date instances updated: ${datesAdded}${br}`)
-  }, 50);
+  summary.push(`${datesAdded} dates updated`);
 }
 
 function setCurrentDate(instance, overrideName) {
@@ -88,4 +74,14 @@ function addOrdinalIndicator(num) {
   } else {
     return `${num}th`;
   }
+}
+
+// make sure user is set up for current date
+function checkDateSetup(doc, summary) {
+  const curDate = symbolMasterWithOverrideName(doc, '<currentDate>');
+  if (curDate === undefined) {
+    summary.push('[ERROR]Update dates: No symbol with override <currentDate> found.');
+    return undefined;
+  }
+  return 'success';
 }

@@ -1,17 +1,24 @@
 {
+  "author": "Joseph Brick",
   "commands": [{
-    "script": "main.js",
-    "name": "Add current date to artboards",
-    "handlers": "onRun",
-    "identifier": "addcurrentdate"
-  }],
+      "script": "main.js",
+      "name": "Update Current Date",
+      "identifier": "updateCurrentDate",
+      "handlers": {
+        "run": "_addCurrentDate"
+      }
+    },
+  ],
   "menu": {
     "isRoot": true,
     "items": [
-      "addcurrentdate"
-    ],
-    "title": "Add current date to artboards"
+      "updateCurrentDate"
+    ]
   },
-  "description": "Add the current date to symbol instances on artboards in a variety of formats",
-  "name": "Add current date to artboards"
+  "identifier": "josephxbrick-update-current-date",
+  "homepage": "https://github.com/josephxbrick/AddCurrentDateToArtboards",
+  "version": "1.0",
+  "description": "Updates certain dates on the current page to the current date in the specified format.",
+  "authorEmail": "jbrick@gmail.com",
+  "name": "Update Current Date"
 }
